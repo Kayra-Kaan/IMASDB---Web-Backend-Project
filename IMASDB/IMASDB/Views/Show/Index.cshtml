@@ -1,0 +1,47 @@
+﻿@model List<Show>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-dark">
+                Show List
+            </h2>
+            <h6 class="text-dark">Listed alphabetically by Show Name</h6>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Show" asp-action="Add" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Add New Show
+            </a>
+        </div>
+    </div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Show Name</th>
+            <th>Season Count</th>
+            <th>Episode Count(Total)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.OrderBy(u => u.ShowName))
+        {
+            <tr>
+                <td>@obj.ShowName</td>
+                <td>@obj.SeasonCount</td>
+                <td>@obj.EpisodeCount</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Show" asp-action="Edit" asp-route-id="@obj.ShowId" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-controller="Show" asp-action="Delete" asp-route-id="@obj.ShowId" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash2"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

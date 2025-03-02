@@ -1,0 +1,56 @@
+﻿@model Show
+
+@{
+    var reminderMessage = ViewData["Reminder"] as string;
+}
+
+@if (!string.IsNullOrEmpty(reminderMessage))
+{
+    <div class="alert alert-info">
+        @reminderMessage
+    </div>
+}
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-dark">Add Show</h2>
+            <hr />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="ShowName" class="p-0"></label>
+            <input asp-for="ShowName" class="form-control" />
+            <span asp-validation-for="ShowName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="SeasonCount" class="p-0"></label>
+            <input asp-for="SeasonCount" class="form-control" />
+            <span asp-validation-for="SeasonCount" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="EpisodeCount" class="p-0"></label>
+            <input asp-for="EpisodeCount" class="form-control" />
+            <span asp-validation-for="EpisodeCount" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Add</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Show" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                    Go Back
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
